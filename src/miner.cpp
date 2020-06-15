@@ -170,7 +170,7 @@ void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int &
 
     int32_t nHeight = pindexPrev->GetHeight() + 1;
 
-    if (CConstVerusSolutionVector::activationHeight.ActiveVersion(nHeight) >= CConstVerusSolutionVector::activationHeight.ACTIVATE_PBAAS_HEADER)
+    if (CConstVerusSolutionVector::activationHeight.ActiveVersion(nHeight) >= CConstVerusSolutionVector::activationHeight.ACTIVATE_PBAAS)
     {
         // coinbase should already be finalized in the new version
         if (buildMerkle)
@@ -2601,7 +2601,7 @@ void static BitcoinMiner_noeq()
                 sleep(2);
                 continue;
             }
-            bool verusSolutionPBaaS = solutionVersion >= CActivationHeight::SOLUTION_VERUSV5_1;
+            bool verusSolutionPBaaS = solutionVersion >= CActivationHeight::ACTIVATE_PBAAS;
 
             // v2 hash writer with adjustments for the current height
             CVerusHashV2bWriter ss2 = CVerusHashV2bWriter(SER_GETHASH, PROTOCOL_VERSION, solutionVersion);
